@@ -4,6 +4,7 @@ MAINTAINER Carles Amigó, fr3nd@fr3nd.net
 
 RUN apt-get update && apt-get install -y \
       curl \
+      git \
       openjdk-7-jdk \
       openssh-server \
       && rm -rf /usr/share/doc/* \
