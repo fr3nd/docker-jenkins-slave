@@ -13,7 +13,11 @@ RUN apt-get update && apt-get install -y \
       && rm -rf /var/tmp/*
 
 RUN mkdir /var/run/sshd
-RUN useradd -u 1000 jenkins
+RUN useradd -u 1000 -d /home/jenkins -m jenkins
+RUN mkdir /home/jenkins/.ssh
+COPY id_rsa.pub /home/jenkins/.ssh/authorized_keys
+RUN chown -R jenkins:jenkins /home/jenkins/.ssh
+RUN chmod 600 /home/jenkins/.ssh/authorized_keys
 
 ENV DOCKER_VERSION 1.6.0
 RUN curl -L https://get.docker.com/builds/Linux/x86_64/docker-$DOCKER_VERSION > /usr/bin/docker
