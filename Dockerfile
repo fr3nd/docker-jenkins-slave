@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
       && rm -rf /var/tmp/*
 
 RUN mkdir /var/run/sshd
-RUN useradd -u 1000 -d /home/jenkins -m jenkins
+RUN useradd -u 1000 -d /home/jenkins -m -s /bin/bash jenkins
 RUN mkdir /home/jenkins/.ssh
 COPY id_rsa.pub /home/jenkins/.ssh/authorized_keys
 RUN chown -R jenkins:jenkins /home/jenkins/.ssh
