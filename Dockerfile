@@ -24,6 +24,16 @@ ENV DOCKER_VERSION 1.6.0
 RUN curl -L https://get.docker.com/builds/Linux/x86_64/docker-$DOCKER_VERSION > /usr/bin/docker
 RUN chmod +x /usr/bin/docker
 
+RUN mkdir -p ~jenkins/.ssh
+RUN chown -R jenkins:jenkins ~jenkins/.ssh
+RUN chmod 700 ~jenkins/.ssh
+RUN mkdir -p ~root/.ssh
+RUN chown -R root:root ~root/.ssh
+RUN chmod 700 ~root/.ssh
+RUN chmod 4755 /usr/bin/sudo
+ADD authorized_keys /home/jenkins/.ssh/authorized_keys
+RUN echo "StrictHostKeyChecking no" >> /etc/ssh/ssh_config
+
 EXPOSE 22
 
 CMD ["/usr/sbin/sshd", "-De"]
