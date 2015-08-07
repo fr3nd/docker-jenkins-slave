@@ -30,7 +30,6 @@ RUN chmod 700 ~jenkins/.ssh
 RUN mkdir -p ~root/.ssh
 RUN chown -R root:root ~root/.ssh
 RUN chmod 700 ~root/.ssh
-RUN chmod 4755 /usr/bin/sudo
 ADD authorized_keys /home/jenkins/.ssh/authorized_keys
 RUN echo "StrictHostKeyChecking no" >> /etc/ssh/ssh_config
 
